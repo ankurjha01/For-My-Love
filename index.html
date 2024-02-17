@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For You</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet"> <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Font Awesome CSS -->
+    <style>
+        body {
+            font-family: 'Great Vibes', cursive;
+            background-color: #f2f2f2;
+            text-align: center;
+            padding: 50px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        h1 {
+            color: #ff4081;
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        .icon-container {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .icon {
+            font-size: 64px;
+            cursor: pointer;
+            color: #ff4081; /* Romantic pink color */
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+        .icon:hover {
+            transform: scale(1.1);
+        }
+        .tap-to-open {
+            font-size: 0.8rem;
+            color: #888;
+        }
+        .message {
+            display: none;
+            animation: slideIn 1s ease;
+        }
+        .iloveyou {
+            display: none;
+            animation: slideIn 1s ease;
+        }
+        .nav-button {
+            display: none;
+            padding: 10px 20px;
+            background-color: #ff4081; /* Romantic pink color */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .swipe-message {
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 20px;
+        }
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="introPage">
+        <h1>For You</h1>
+        <div class="icon-container" onclick="showMessage()">
+            <i class="icon fas fa-envelope"></i>
+            <span class="tap-to-open">Tap ✉️ to Open</span>
+        </div>
+    </div>
+
+    <div class="container message" id="messagePage">
+        <h1>For You</h1>
+        <p>Dear Diya,</p>
+        <p>I want to apologize for my behavior last night. I know I hurt you, and for that, I am truly sorry. My intention is always to make you happy, and I hate knowing that I caused you pain. You mean everything to me, and I promise to do better.
+          </br> I understand that trust and communication are the pillars of our relationship, and I acknowledge that I faltered in upholding them. I'm committed to learning from this experience and growing as a partner for you. Your happiness is my priority, and I'll do whatever it takes to ensure that our relationship remains strong and filled with love and understanding.</br>Please know that I value you deeply, and I'm here for you, ready to listen, understand, and support you in every way I can. Let's work through this together and emerge even stronger than before.
+        </p>
+        <p class="swipe-message">Swipe to see next</p>
+    </div>
+
+    <div class="container iloveyou" id="lovePage">
+        <h1>I Love You, Diya-</h1>
+        <p>You mean the world to me, and I am grateful for every moment we share together. You make me a better person, and I am blessed to have you in my life. I love you more than words can express.</br> <span style="float: right;">-Your Ankur</span></p>
+        <button class="nav-button" onclick="location.reload()">Restart</button>
+    </div>
+
+    <script>
+        let touchstartX = 0;
+        let touchendX = 0;
+
+        function handleGesture() {
+            if (touchendX < touchstartX) {
+                document.getElementById("messagePage").style.animation = "slideOut 1s forwards";
+                document.getElementById("lovePage").style.display = "block";
+            }
+        }
+
+        document.addEventListener('touchstart', function(event) {
+            touchstartX = event.changedTouches[0].screenX;
+        }, false);
+
+        document.addEventListener('touchend', function(event) {
+            touchendX = event.changedTouches[0].screenX;
+            handleGesture();
+        }, false);
+
+        function showMessage() {
+            document.getElementById("introPage").style.display = "none";
+            document.getElementById("messagePage").style.display = "block";
+        }
+    </script>
+</body>
+</html>
